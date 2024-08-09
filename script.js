@@ -6,7 +6,7 @@ this.price=price;
 this.isAvilable=true;
 }
 // booking the Room
-bookRom(){
+bookRoom(){
     if(this.isAvilable){
         this.isAvilable=false;
         return true;
@@ -47,12 +47,16 @@ class Reservation{
 
     makeReservation(type){
        const room=this.hotel.findAvailableRoom(type);
-       if(room.bookRom()){
-        this.reservation.push(room);
-        return 'Room ${room.number} booked successfully';
+       if(room){
+        console.log(room);
+        if(room.bookRoom()){
+            this.reservation.push(room);
+            return 'Room ${room.number} booked successfully';
+        }
        }
        return 'Room ${room.number} is not available';
-    }
+    
+}
 
     cancelReservation(roomNumber){
         const room=this.reservation.find(room=>room.number==roomNumber);
@@ -96,9 +100,9 @@ hotel.addRoom(new Room(7,'double',150));
 hotel.addRoom(new Room(8,'double',150));    
 hotel.addRoom(new Room(9,'double',150));    
 hotel.addRoom(new Room(10,'double',150));    
-hotel.addRoom(new Room(11,'Suite',150));    
-hotel.addRoom(new Room(12,'Suite',150));    
-hotel.addRoom(new Room(13,'Suite',150)); 
+hotel.addRoom(new Room(11,'suite',150));    
+hotel.addRoom(new Room(12,'suite',150));    
+hotel.addRoom(new Room(13,'suite',150)); 
 
 const reservation=new Reservation(hotel);  
 
