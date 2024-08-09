@@ -48,7 +48,6 @@ class Reservation{
     makeReservation(type){
        const room=this.hotel.findAvailableRoom(type);
        if(room){
-        console.log(room);
         if(room.bookRoom()){
             this.reservation.push(room);
             return 'Room ${room.number} booked successfully';
@@ -61,6 +60,7 @@ class Reservation{
     cancelReservation(roomNumber){
         const room=this.reservation.find(room=>room.number==roomNumber);
         if(room){
+            // that is mean i found the room
         if(room.cancelReservation()){
         this.reservation=this.reservation.filter(room=>room.number!==roomNumber);
         return 'Room $#{room.number} cancelled successfully';
@@ -91,18 +91,18 @@ displayAvailableRooms(){
 }
 const hotel=new Hotel('Hilton');
 hotel.addRoom(new Room(1,'single',100));
-hotel.addRoom(new Room(2,'single',150));    
-hotel.addRoom(new Room(3,'single',150));    
-hotel.addRoom(new Room(4,'single',150));    
-hotel.addRoom(new Room(5,'single',150));    
-hotel.addRoom(new Room(6,'single',150));    
+hotel.addRoom(new Room(2,'single',100));    
+hotel.addRoom(new Room(3,'single',100));    
+hotel.addRoom(new Room(4,'single',100));    
+hotel.addRoom(new Room(5,'single',100));    
+hotel.addRoom(new Room(6,'single',100));    
 hotel.addRoom(new Room(7,'double',150));    
 hotel.addRoom(new Room(8,'double',150));    
 hotel.addRoom(new Room(9,'double',150));    
 hotel.addRoom(new Room(10,'double',150));    
 hotel.addRoom(new Room(11,'suite',150));    
-hotel.addRoom(new Room(12,'suite',150));    
-hotel.addRoom(new Room(13,'suite',150)); 
+hotel.addRoom(new Room(12,'suite',200));    
+hotel.addRoom(new Room(13,'suite',200)); 
 
 const reservation=new Reservation(hotel);  
 
